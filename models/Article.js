@@ -1,12 +1,12 @@
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 
 
 // Article Schema
 let articleSchema = mongoose.Schema({
 
-  title:  {type: string, required: true},
-  author: {type: string, required: true},
-  body:   {type: string, required: true},
+  title:  {type: String, required: true},
+  author: {type: String, required: true},
+  body:   {type: String, required: true},
 
 });
 
