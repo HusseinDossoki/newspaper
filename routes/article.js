@@ -2,6 +2,7 @@ const router = require('express').Router();
 let Article  = require('../models/Article'); 
 
 
+// get the home page for articles
 router.get('/', (req, res) => {
 
   Article.find({}, (err, articles) => {
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
 });
 
 
+// add article to database
 router.post('/article/add', (req, res) => {
   
   let article = new Article();
@@ -35,6 +37,8 @@ router.post('/article/add', (req, res) => {
 });
 
 
+
+// get article details page
 router.get('/article/:id', (req, res) => {
   
   Article.findById(req.params.id, (err, article) => {
@@ -45,5 +49,46 @@ router.get('/article/:id', (req, res) => {
   });
 
 });
+
+
+// get article update page
+router.get('/article/edit/:id', (req, res) => {
+  
+  Article.findById(req.params.id, (err, article) => {
+    if(err) throw err;
+    res.render('edit_article', {
+      article: article
+    })
+  });
+
+});
+
+
+// update the article
+router.post('/article/edit/:id', (req, res) => {
+  
+  let article = {};
+  article.title   = req.body.title;
+  article.author  = req.body.author;
+  article.body    = req.body.body;
+
+  Article.update({_id: req.params.id}, article, (err) => {
+    if(err) throw err;
+    res.redirect('/');
+  });
+
+});
+
+
+// delete an article
+router.delete('/article/:id', (req, res) => {
+
+  Article.remove({_id: req.params.id}, (err) => {
+    if(err) throw err;
+    res.send(); // res.send() by default will send a 200 status which means everything is okay
+  });
+
+});
+
 
 module.exports = router;

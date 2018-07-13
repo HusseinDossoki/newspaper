@@ -9,15 +9,23 @@
     </div>
   </div>
 
+  <h3 style="margin-top: 50px;">Articles</h3>
   <div class="row" style="margin-top: 30px;">
-    <div class="col-md-12">
-      <h3>Articles</h3>
-    <div class="list-group">
-      {{#each articles}}
-        <a href="/article/{{_id}}" class="list-group-item list-group-item-action">{{title}}</a>
-      {{/each}}
+    {{#each articles}}
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="/article/{{_id}}">{{title}}</a>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{body}}</h6>
+          <p class="card-text">{{author}}</p>
+          <a href="/article/edit/{{_id}}" class="card-link">Edit</a>
+          <a article-id="{{_id}}" class="card-link delete-article-btn">Delete</a>
+        </div>
+      </div>
     </div>
-    </div>
+    {{/each}}
   </div>
 </div>
 
