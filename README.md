@@ -50,4 +50,4 @@ Linkedin: <https://www.linkedin.com/in/husseindossoki/>
 
 
 [CHANGELOG]: ./CHANGELOG.md
-[version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
+[version-badge]: https://img.shields.io/badge/version-1.1.0-blue.svg
