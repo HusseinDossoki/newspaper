@@ -3,7 +3,7 @@ let Article  = require('../models/Article');
 
 
 // get the home page for articles
-router.get('/', (req, res) => {
+router.get('/', ensureAuthenticated, (req, res) => {
 
   Article.find({}, (err, articles) => {
     if(err) throw err;
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 
 // add article to database
-router.post('/article/add', (req, res) => {
+router.post('/article/add', ensureAuthenticated, (req, res) => {
   
   let article = new Article();
   article.title   = req.body.title;
@@ -39,7 +39,7 @@ router.post('/article/add', (req, res) => {
 
 
 // get article details page
-router.get('/article/:id', (req, res) => {
+router.get('/article/:id', ensureAuthenticated, (req, res) => {
   
   Article.findById(req.params.id, (err, article) => {
     if(err) throw err;
@@ -52,7 +52,7 @@ router.get('/article/:id', (req, res) => {
 
 
 // get article update page
-router.get('/article/edit/:id', (req, res) => {
+router.get('/article/edit/:id', ensureAuthenticated, (req, res) => {
   
   Article.findById(req.params.id, (err, article) => {
     if(err) throw err;
@@ -65,7 +65,7 @@ router.get('/article/edit/:id', (req, res) => {
 
 
 // update the article
-router.post('/article/edit/:id', (req, res) => {
+router.post('/article/edit/:id', ensureAuthenticated, (req, res) => {
   
   let article = {};
   article.title   = req.body.title;
@@ -81,7 +81,7 @@ router.post('/article/edit/:id', (req, res) => {
 
 
 // delete an article
-router.delete('/article/:id', (req, res) => {
+router.delete('/article/:id', ensureAuthenticated, (req, res) => {
 
   Article.remove({_id: req.params.id}, (err) => {
     if(err) throw err;
@@ -90,5 +90,14 @@ router.delete('/article/:id', (req, res) => {
 
 });
 
+
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.redirect('/user/login');
+	}
+}
 
 module.exports = router;

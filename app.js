@@ -4,6 +4,8 @@ const express     = require('express');
 const exhb        = require('express-handlebars');
 const mongoose    = require('mongoose');
 const cors        = require('cors');
+const passport    = require('passport');
+const session     = require('express-session');
 
 const databaseConfig = require('./config/database');
 
@@ -41,9 +43,28 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// session
+app.use(session({
+  secret: 'test',
+  resave: true,
+  saveUninitialized: true
+}));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+app.get('*', (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
+
 // defines routes
 const articleRoute = require('./routes/article');
+const userRoute = require('./routes/user');
 app.use('/', articleRoute);
+app.use('/user', userRoute);
 
 
 // start the server
