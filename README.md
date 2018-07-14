@@ -15,11 +15,9 @@ with it you can add, edit, delete article
 + ```Nodejs with Express``` for backend
 + ```Mongodb``` for database
 + ```express-handlebars``` for rendering templating views
-<<<<<<< HEAD
-=======
 + ```passport``` ```passport-local``` for authentication by email and password
 + ```bcryptjs``` for hashing the password
->>>>>>> 86d0b4d... adding authentication 'local-strategy' and protecting the routes
+
 
 
 ## Quick start
@@ -52,9 +50,4 @@ Linkedin: <https://www.linkedin.com/in/husseindossoki/>
 
 
 [CHANGELOG]: ./CHANGELOG.md
-
-<<<<<<< HEAD
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
-=======
-[version-badge]: https://img.shields.io/badge/version-1.1.0-blue.svg
->>>>>>> 86d0b4d... adding authentication 'local-strategy' and protecting the routes
