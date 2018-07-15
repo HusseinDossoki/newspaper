@@ -1,13 +1,13 @@
 # [Newspaper](#)  [![version][version-badge]][CHANGELOG]
 
 
-**[Newspaper](#)** is an open source application was built with nodejs, express and mongodb
+**[Newspaper](https://newspaper-2019.herokuapp.com/)** is an open source application was built with nodejs, express and mongodb
 
 with it you can add, edit, delete article
 
 ## Links:
 
-+ [Live Preview](#)
++ [Live Preview](https://newspaper-2019.herokuapp.com/)
 
 
 ## Used Technologies:
